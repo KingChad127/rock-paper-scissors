@@ -1,0 +1,72 @@
+* {
+  font-family: Roboto, sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: slategray;
+}
+
+.navbar {
+  background-color: black;
+  color: white;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 200px 0 200px;
+}
+
+.score,
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.score {
+  flex-direction: column;
+}
+
+.move {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.score .container,
+.options .container {
+  display: flex;
+}
+
+#player-score,
+#computer-score {
+  width: 400px;
+  flex: 1;
+  text-align: center;
+  margin: 40px;
+}
+
+.outcome {
+  text-align: center;
+}
+
+button {
+  font-size: 20px;
+  margin: 50px;
+  border-radius: 10px;
+  padding: 40px 80px 40px 80px;
+}
+
+#rock {
+  background-color: peru;
+}
+
+#paper {
+  background-color: mintcream;
+}
+
+#scissors {
+  background-color: cornflowerblue;
+}

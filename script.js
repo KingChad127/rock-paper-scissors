@@ -1,3 +1,5 @@
+let gameOver = false;
+
 /**
  * Player class. A player has a name and some points that start out as 0
  */
@@ -42,33 +44,41 @@ function isEqual(strA, strB) {
  * @returns {string} the outcome of the
  */
 function round(playerChoice, computerChoice, player, computer) {
-  const win = `You win! ${playerChoice} beats ${computerChoice}!`;
-  const lose = `You lose! ${computerChoice} beats ${playerChoice}!`;
-  const tie = `Tie! ${playerChoice} and ${computerChoice} are the same!`;
-  if (
-      (isEqual(playerChoice, "Rock") && isEqual(computerChoice, "Scissors")) ||
-      (isEqual(playerChoice, "Paper") && isEqual(computerChoice, "Rock")) ||
-      (isEqual(playerChoice, "Scissors") && isEqual(computerChoice, "Paper"))
-  ) {
-    player.points++;
-    return win;
-  } else if (isEqual(playerChoice, computerChoice)) {
-    return tie;
-  } else {
-    computer.points++;
-    return lose;
+  if (!gameOver) {
+    if ((isEqual(playerChoice, "Rock") && isEqual(computerChoice, "Scissors")) || (isEqual(
+        playerChoice, "Paper") && isEqual(computerChoice, "Rock")) || (isEqual(playerChoice,
+        "Scissors") && isEqual(computerChoice, "Paper"))) {
+      player.points++;
+      document.querySelector("#player-score h3").innerText = player.points;
+      document.querySelector("p#move").innerText = `You Win. ${playerChoice} beats ${computerChoice}!`;
+    } else if (!isEqual(playerChoice, computerChoice)) {
+      computer.points++;
+      document.querySelector("#computer-score h3").innerText = computer.points;
+      document.querySelector("p#move").innerText = `You Lost. ${computerChoice} beats ${playerChoice}!`;
+    } else {
+      document.querySelector(
+          "p#move").innerText = `Tie! You and the Computer both picked ${playerChoice}`;
+    }
+    // check if either player has won
+    if (player.points === 5 || computer.points === 5) {
+      gameOver = true;
+      const winner = player.points === 5 ? "You" : "Computer";
+      const outcome = document.createElement("h2");
+      outcome.innerText = winner === "You" ? "You won!" : "You Lost :(";
+      document.querySelector(".outcome").appendChild(outcome);
+    }
   }
 }
 
-function game() {
-  const h = new Player("player");
-  const c = new Player("computer");
-  for (let i = 0; i < 5; i++) {
-    let usrInput = window.prompt("Rock, Paper, or Scissors?");
-    usrInput = usrInput[0].toUpperCase() + usrInput.substring(1);
-    console.log(round(usrInput, computerPlay(), h, c));
-  }
-  console.log(`Final Score: You - ${h.points}, Computer - ${c.points}`)
-}
+const h = new Player("player");
+const c = new Player("computer");
 
-game();
+// Manipulate DOM
+const Rock = document.querySelector("#rock");
+const Paper = document.querySelector("#paper");
+const Scissors = document.querySelector("#scissors");
+const options = [Rock, Paper, Scissors];
+for (const option of options) {
+  option.addEventListener("click",
+      () => console.log(round(`${option.innerHTML}`, computerPlay(), h, c)));
+}

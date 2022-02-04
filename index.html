@@ -2,20 +2,43 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        h1 {
-            text-align: center;
-        }
-    </style>
-    <script src="./script.js"></script>
-    <title>Rock Paper Scissors</title>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link href="styles.css" rel="stylesheet">
+  <script defer src="./script.js"></script>
+  <title>Rock Paper Scissors</title>
 </head>
 
 <body>
-    <h1>This is a simple game of Rock Paper Scissors played in browser console</h1>
+  <div class="navbar">
+    <div class="container">
+      <h1>Rock Paper Scissors</h1>
+    </div>
+  </div>
+  <div class="options">
+    <div class="container">
+      <button id="rock">Rock</button>
+      <button id="paper">Paper</button>
+      <button id="scissors">Scissors</button>
+    </div>
+  </div>
+  <div class="score">
+    <div class="move container">
+      <p id="move">Current Move: </p>
+    </div>
+    <div class="scores container">
+      <div id="player-score">
+        <h2>Your Score</h2>
+        <h3 class="score">0</h3>
+      </div>
+      <div id="computer-score">
+        <h2>Computer's Score</h2>
+        <h3 class="score">0</h3>
+      </div>
+    </div>
+  </div>
+  <div class="outcome"></div>
 </body>
 
 </html>
